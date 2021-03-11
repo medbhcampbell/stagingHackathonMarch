@@ -33,6 +33,7 @@ export default function Addition() {
         if (question.number1 === 0 || (submitted && correct)) {
             setQuestion(getAdditionQuestion());
             console.log(`got new question: ${JSON.stringify(question)}`);
+            setAnswer(0);
             setSubmitted(false);
             setCorrect(false);
         }
@@ -40,21 +41,27 @@ export default function Addition() {
 
     return (
         <div>
-            <h1>Welcome to the game quiz!</h1>
+            <h1>Welcome to the Brain Quiz!</h1>
             {question.number1 > 0 &&
                 <>
                     <h2>{`${question.number1} + ${question.number2}`}</h2>
-                    <input type='number' placeholder='Type your answer here!' onChange={(e) => {
-                        console.log(`text: ${e.target.value}`);
-                        console.log(`answer: ${answer}`);
-                        setAnswer(Number(e.target.value))
-                        console.log(`answer: ${answer}`);}
-                    }></input>
+                    <input
+                        type='text'
+                        value={answer || ''}
+                        placeholder='Type your answer here!'
+                        onChange={(e) => {
+                            console.log(`text: ${e.target.value}`);
+                            console.log(`answer: ${answer}`);
+                            setAnswer(Number(e.target.value));
+                            console.log(`answer: ${answer}`);
+                        }
+                        }>
+                    </input>
                     <button onClick={handleAnswerSubmit}>Submit answer</button>
                 </>
             }
-            {submitted &&
-                <p>{correct ? 'Correct!' : 'Incorrect'}</p>
+            {submitted && !correct &&
+                <p>Incorrect!</p>
             }
         </div>
     )
