@@ -39,23 +39,31 @@ export default function Addition() {
     }, [submitted, correct]);
 
     return (
-        <div>
-            <h1>Welcome to the game quiz!</h1>
+        <div className="">
+            <h1 className="display-1 dark-bg color-white spacing-around">Welcome to the Brain Quiz!</h1>
+
+            <h1 className="display-2 dark-bg color-blue spacing-around">What is the answer to </h1>
+
             {question.number1 > 0 &&
                 <>
-                    <h2>{`${question.number1} + ${question.number2}`}</h2>
-                    <input type='number' placeholder='Type your answer here!' onChange={(e) => {
+                    <h2 className="display-3 dark-bg color-gold">{`${question.number1} + ${question.number2}`}</h2>
+                    <br></br>
+                    <input className="form-control margin-50" type='number' placeholder='Get Your Numbers Right' onChange={(e) => {
                         console.log(`text: ${e.target.value}`);
                         console.log(`answer: ${answer}`);
                         setAnswer(Number(e.target.value))
-                        console.log(`answer: ${answer}`);}
+                        console.log(`answer: ${answer}`);
+                    }
                     }></input>
-                    <button onClick={handleAnswerSubmit}>Submit answer</button>
+                    <br></br>
+                    <button className="btn btn-danger " onClick={handleAnswerSubmit}>Submit answer</button>
+                    <br></br>
                 </>
             }
             {submitted &&
-                <p>{correct ? 'Correct!' : 'Incorrect'}</p>
+                <p className="display-3 dark-bg-grad color-gold">{correct ? 'Correct!' : 'Incorrect'}</p>
             }
+            <br></br>
         </div>
     )
 }
