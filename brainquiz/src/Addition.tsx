@@ -23,6 +23,11 @@ export default function Addition() {
 
     let [question, setQuestion] = useState(new AdditionQuestion(0, 0));
 
+    function  onKeyUp(event:any) {
+        if (event.charCode === 13) {
+            handleAnswerSubmit();
+        }
+    }
     function handleAnswerSubmit() {
         setCorrect(checkAnswer(Number(answer), question.correctAnswer));
         setSubmitted(true);
@@ -33,6 +38,7 @@ export default function Addition() {
         if (question.number1 === 0 || (submitted && correct)) {
             setQuestion(getAdditionQuestion());
             console.log(`got new question: ${JSON.stringify(question)}`);
+            setAnswer(0);
             setSubmitted(false);
             setCorrect(false);
         }
@@ -48,21 +54,27 @@ export default function Addition() {
                 <>
                     <h2 className="display-3 dark-bg color-gold">{`${question.number1} + ${question.number2}`}</h2>
                     <br></br>
-                    <input className="form-control margin-50" type='number' placeholder='Get Your Numbers Right' onChange={(e) => {
-                        console.log(`text: ${e.target.value}`);
-                        console.log(`answer: ${answer}`);
-                        setAnswer(Number(e.target.value))
-                        console.log(`answer: ${answer}`);
+                    <input className="form-control margin-50"  placeholder='Get Your Numbers Right' 
+                         type='text'
+
+                         value={answer || ''}
+
+                         onChange={(e) => {
+                             console.log(`text: ${e.target.value}`);
+                             console.log(`answer: ${answer}`);
+                             setAnswer(Number(e.target.value));
+                             console.log(`answer: ${answer}`);
+                         }
                     }
-                    }></input>
+                    onKeyPress={onKeyUp}
+                    ></input>
                     <br></br>
                     <button className="btn btn-danger " onClick={handleAnswerSubmit}>Submit answer</button>
                     <br></br>
                 </>
             }
-            {submitted &&
-                <p className="display-3 dark-bg-grad color-gold">{correct ? 'Correct!' : 'Incorrect'}</p>
-            }
+        
+            { submitted && !correct &&<p className="display-3 dark-bg-grad color-gold">Incorrect!</p>}
             <br></br>
         </div>
     )
