@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function Timer(){
-    const [counter, setCounter] = React.useState(60);
+export default function Timer(props:any){
+    const [counter, setCounter] = React.useState(props.myTime);
 
     function resetCounter(){
+        
         document.location.reload(); 
         }
     React.useEffect(() => {
@@ -12,7 +13,7 @@ export default function Timer(){
       return (
         <div className="App">
           <div>Countdown: {counter}</div>
-          
+
     <div className="">
       <button className="btn btn-warning" onClick={resetCounter}>Start</button>
       </div>
