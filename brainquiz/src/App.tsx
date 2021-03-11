@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -6,7 +7,9 @@ import Addition from './Addition';
 
 function App() {
   return (
-    <div className="App">
+    <div className="dark-bg-grad ">
+      <body className="App dark-bg-grad spacing-around">
+      <div>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -22,6 +25,8 @@ function App() {
         </a>
       </header> */}
       <Addition></Addition>
+    </div>
+    </body>
     </div>
   );
 }
