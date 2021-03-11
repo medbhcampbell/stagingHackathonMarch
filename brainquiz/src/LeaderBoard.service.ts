@@ -10,10 +10,16 @@ export function postNewUser(username: string, score: number) {
     }
 }
 
-export function getLeaders(): any {
-    try {
-        axios.get(url);
-    } catch (err) {
-        console.error(err);
-    }
+export async function getLeaders(): Promise<any> {
+    // try {
+    //     return await axios.get(url);
+    // } catch (err) {
+    //     console.error(err);
+    //return null;
+    // }
+    let arr = [{'username': 'hi', 'score': 50},
+            {'username': 'hello', 'score': 35},
+            {'username': 'goodbye', 'score':20}
+        ];
+    return await arr;
 }

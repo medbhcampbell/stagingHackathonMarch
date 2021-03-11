@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { AdditionQuestion, checkAnswer, getAdditionQuestion } from './Addition.service';
 import LeaderBoard from './LeaderBoard';
+import { postNewUser } from './LeaderBoard.service';
+import Timer from './timer';
 
 /**
  * Display a heading - y
@@ -59,25 +61,32 @@ export default function Addition() {
             setSubmitted(false);
             setCorrect(false);
         }
-    }, [submitted, correct]);
+
+        // if (ended) {
+        //     postNewUser(username, score);
+        // }
+    }, [submitted, correct, ended]);
 
     return (
         <div className="">
             <h1 className="display-1 dark-bg color-white spacing-around">Welcome to the Brain Quiz{` ${username}`}!</h1>
 
-            <h1 className="display-2 dark-bg color-blue spacing-around">What is the answer to </h1>
+            {running && !ended && <h1 className="display-2 dark-bg color-blue spacing-around">What is the answer to </h1>}
 
             {!running &&
                 <>
                     <input
                         type='text'
                         placeholder='Enter username'
+                        className="form-control margin-50"
                         onChange={(e) => setUsername(e.target.value)}></input>
-                    <button onClick={/*this should start the timer too*/ () => setRunning(true)}>START</button>
+                    <button
+                        className="btn btn-success"
+                        onClick={() => setRunning(true)}>START</button>
                 </>
             }
 
-            {running && question.number1 > 0 &&
+            {running && question.number1 > 0 && !ended &&
                 <>
                     <h2 className="display-3 dark-bg color-gold">{`${question.number1} + ${question.number2}`}</h2>
                     <br></br>
@@ -99,11 +108,17 @@ export default function Addition() {
                     <button className="btn btn-danger " onClick={handleAnswerSubmit}>Submit answer</button>
                     <br></br>
                     { submitted && !correct && <p className="display-3 dark-bg-grad color-gold">Incorrect!</p>}
+                    <Timer myTime={10} endTimer={setEnded}></Timer>
                 </>
             }
 
-            {!running && /*ended &&*/
-                <LeaderBoard></LeaderBoard>}
+            {ended &&
+                <>
+                    <br></br>
+                    <p className="display-4">Your score: {score}</p>
+                    <br/>
+                    <LeaderBoard></LeaderBoard>
+                </>}
 
             <br></br>
         </div>
