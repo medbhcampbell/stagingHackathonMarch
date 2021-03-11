@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import './Addition';
 import Addition from './Addition';
+import Timer from './timer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Addition></Addition>
     </div>
     </body>
+    <Timer></Timer>
     </div>
   );
 }
