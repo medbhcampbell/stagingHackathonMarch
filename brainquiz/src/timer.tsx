@@ -9,14 +9,19 @@ export default function Timer(props:any){
         }
     React.useEffect(() => {
         counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+
+        if(counter === 0) {
+          props.endTimer(true);
+        }
+
       }, [counter]);
       return (
         <div className="App">
           <div>Countdown: {counter}</div>
 
-    <div className="">
+    {/* <div className="">
       <button className="btn btn-warning" onClick={resetCounter}>Start</button>
-      </div>
+      </div> */}
         </div>
       );
     }

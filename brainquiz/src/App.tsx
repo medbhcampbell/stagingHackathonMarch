@@ -28,7 +28,6 @@ function App() {
       <Addition></Addition>
     </div>
     </body>
-    <Timer></Timer>
     </div>
   );
 }
