@@ -23,6 +23,11 @@ export default function Addition() {
 
     let [question, setQuestion] = useState(new AdditionQuestion(0, 0));
 
+    function  onKeyUp(event:any) {
+        if (event.charCode === 13) {
+            handleAnswerSubmit();
+        }
+    }
     function handleAnswerSubmit() {
         setCorrect(checkAnswer(Number(answer), question.correctAnswer));
         setSubmitted(true);
@@ -40,29 +45,37 @@ export default function Addition() {
     }, [submitted, correct]);
 
     return (
-        <div>
-            <h1>Welcome to the Brain Quiz!</h1>
+        <div className="">
+            <h1 className="display-1 dark-bg color-white spacing-around">Welcome to the Brain Quiz!</h1>
+
+            <h1 className="display-2 dark-bg color-blue spacing-around">What is the answer to </h1>
+
             {question.number1 > 0 &&
                 <>
-                    <h2>{`${question.number1} + ${question.number2}`}</h2>
-                    <input
-                        type='text'
-                        value={answer || ''}
-                        placeholder='Type your answer here!'
-                        onChange={(e) => {
-                            console.log(`text: ${e.target.value}`);
-                            console.log(`answer: ${answer}`);
-                            setAnswer(Number(e.target.value));
-                            console.log(`answer: ${answer}`);
-                        }
-                        }>
-                    </input>
-                    <button onClick={handleAnswerSubmit}>Submit answer</button>
+                    <h2 className="display-3 dark-bg color-gold">{`${question.number1} + ${question.number2}`}</h2>
+                    <br></br>
+                    <input className="form-control margin-50"  placeholder='Get Your Numbers Right' 
+                         type='text'
+
+                         value={answer || ''}
+
+                         onChange={(e) => {
+                             console.log(`text: ${e.target.value}`);
+                             console.log(`answer: ${answer}`);
+                             setAnswer(Number(e.target.value));
+                             console.log(`answer: ${answer}`);
+                         }
+                    }
+                    onKeyPress={onKeyUp}
+                    ></input>
+                    <br></br>
+                    <button className="btn btn-danger " onClick={handleAnswerSubmit}>Submit answer</button>
+                    <br></br>
                 </>
             }
-            {submitted && !correct &&
-                <p>Incorrect!</p>
-            }
+        
+            { submitted && !correct &&<p className="display-3 dark-bg-grad color-gold">Incorrect!</p>}
+            <br></br>
         </div>
     )
 }

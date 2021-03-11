@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +36,30 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.dark-bg{
+  background-color: black;
+}
+.dark-bg-grad{
+  background-image: linear-gradient(to left, black,silver,black);
+}
+.color-white{
+  color: white;
+}
+.color-gold{
+  color:gold;
+}
+.color-blue{
+  color: blue;
+}
+.spacing-around{
+  padding:0;
+  margin: 0;
+}
+.margin-50{
+  max-width:500px;
+  margin:auto;
+  text-align: center;
+
 }
