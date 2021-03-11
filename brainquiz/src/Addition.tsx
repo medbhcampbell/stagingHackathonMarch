@@ -76,6 +76,8 @@ export default function Addition() {
         
             { submitted && !correct &&<p className="display-3 dark-bg-grad color-gold">Incorrect!</p>}
             <br></br>
+
+            <div><p></p></div>
         </div>
     )
 }
