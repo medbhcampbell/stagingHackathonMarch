@@ -1,0 +1,11 @@
+insert into leaderboard (score, username) values (1, 'Patrick');
+insert into leaderboard (score, username) values (5, 'Hal 9000');
+insert into leaderboard (score, username) values (20, 'Right There');
+insert into leaderboard (score, username) values (90, 'TI-84');
+insert into leaderboard (score, username) values (70, 'Tony Stark');
+insert into leaderboard (score, username) values (28, 'SpongeBob');
+insert into leaderboard (score, username) values (6, 'Skynet');
+insert into leaderboard (score, username) values (13, 'The Rock');
+insert into leaderboard (score, username) values (11, 'Mario');
+insert into leaderboard (score, username) values (4, 'Pizza');
+insert into leaderboard (score, username) values (3, 'A Rock');
