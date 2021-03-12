@@ -31,7 +31,7 @@ export default function LeaderBoard() {
                 <th>Name</th>
                 <th>Score</th>
             </tr>
-            {leaders.map((ele: any, index: any) => {
+            {leaders && leaders.map((ele: any, index: any) => {
                 return (
                     <tr>
                         <td>{index + 1}</td>
