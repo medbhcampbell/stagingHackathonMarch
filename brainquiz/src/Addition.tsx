@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AdditionQuestion, checkAnswer, getAdditionQuestion } from './Addition.service';
 import LeaderBoard from './LeaderBoard';
-import { postNewUser } from './LeaderBoard.service';
+//import { postNewUser } from './LeaderBoard.service';
 import Timer from './timer';
 
 /**
