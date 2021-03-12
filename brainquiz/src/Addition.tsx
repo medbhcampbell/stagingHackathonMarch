@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AdditionQuestion, checkAnswer, getAdditionQuestion } from './Addition.service';
 import LeaderBoard from './LeaderBoard';
-import { postNewUser } from './LeaderBoard.service';
+import { getLeaders, postNewUser } from './LeaderBoard.service';
 import Timer from './timer';
 
 /**
@@ -38,6 +38,8 @@ export default function Addition() {
     //update this to true when the timer runs out
     let [ended, setEnded] = useState(false);
 
+    let [leaders, setLeaders] = useState([]);
+
     function onKeyUp(event: any) {
         if (event.charCode === 13) {
             handleAnswerSubmit();
@@ -62,9 +64,14 @@ export default function Addition() {
             setCorrect(false);
         }
 
-        // if (ended) {
-        //     postNewUser(username, score);
-        // }
+        async function endQuiz(){
+            await postNewUser(username, score);
+            setLeaders(await getLeaders());
+        }
+
+        if (ended) {
+            endQuiz();
+        }
     }, [submitted, correct, ended]);
 
     return (
@@ -117,7 +124,7 @@ export default function Addition() {
                     <br></br>
                     <p className="display-4">Your score: {score}</p>
                     <br/>
-                    <LeaderBoard></LeaderBoard>
+                    <LeaderBoard leaders={leaders}></LeaderBoard>
                 </>}
 
             <br></br>
